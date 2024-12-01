@@ -5,9 +5,10 @@ const notificationRoutes = require('./routes/notificationRoutes');
 const cors = require("cors");
 
 // Load environment variables from .env file
-dotenv.config();
+dotenv.config({path: './config/.env'});
 const app = express();
 const PORT = process.env.PORT || 5000;
+console.log(process.env.PORT)
 // Middleware
 app.use(express.json());
 app.use(cors());

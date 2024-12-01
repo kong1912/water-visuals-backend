@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 const { getRecentPlantData } = require('./plantService');
+const dotenv = require("dotenv");
 
 let notifications = []; // Replace with a database in production
 
