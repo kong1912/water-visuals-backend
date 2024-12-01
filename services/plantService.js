@@ -62,32 +62,3 @@ exports.getRecentPlantData = async () => {
     return null;
   }
 };
-
-exports.identifyPlant = async (imageURL) => {
-  try {
-      // Fetch the image from the provided URL
-      const response = await axios.get(imageURL, { responseType: 'arraybuffer' });
-      const imgBuffer = Buffer.from(response.data, 'binary');
-
-      // Encode the fetched image to base64
-      const encodedImage = imgBuffer.toString('base64');
-
-      // Define the data payload
-      const data = {
-          images: [`data:image/jpg;base64,${encodedImage}`],  // Base64 encoded image
-          similar_images: true  // Optional, whether to find similar images
-      };
-
-      const headers = {
-          'Api-Key': process.env.API_KEY  // Replace with your actual PlantNet API key
-      };
-
-      // Send the POST request to PlantNet API
-      const plantNetResponse = await axios.post('https://plant.id/api/v3/identification', data, { headers });
-
-      return plantNetResponse;
-  } catch (error) {
-      console.error('Error in identifyPlant service:', error);
-      throw new Error('An error occurred while identifying the plant.');
-  }
-};
