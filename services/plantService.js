@@ -42,20 +42,30 @@ exports.getRecentPlantData = async () => {
       return null;
     }
 
-    // Get the most recent entry by accessing the last key in each object
-    const mostRecentLdrEntry = ldrData?.[Object.keys(ldrData).at(-1)] || null;
-    const mostRecentMotionEntry = motionData?.[Object.keys(motionData).at(-1)] || null;
-    const mostRecentSoilEntry = soilData?.[Object.keys(soilData).at(-1)] || null;
-    const mostRecentTempEntry = tempData?.[Object.keys(tempData).at(-1)] || null;
+    // Helper function to find the most recent entry with a timestamp
+    const getMostRecentEntryWithTimestamp = (data) => {
+      const keys = Object.keys(data);
+      if (keys.length === 0) return null;
+      
+      const mostRecentKey = keys.at(-1); // Get the last key (most recent)
+      return {
+        timestamp: mostRecentKey,
+        value: data[mostRecentKey],
+      };
+    };
 
-    console.log(mostRecentSoilEntry);
+    const mostRecentLdrEntry = getMostRecentEntryWithTimestamp(ldrData);
+    const mostRecentMotionEntry = getMostRecentEntryWithTimestamp(motionData);
+    const mostRecentSoilEntry = getMostRecentEntryWithTimestamp(soilData);
+    const mostRecentTempEntry = getMostRecentEntryWithTimestamp(tempData);
+
+    console.log("Most recent soil entry:", mostRecentSoilEntry);
 
     return {
-      brightness: mostRecentLdrEntry?.ldr_value,
-      motion: mostRecentMotionEntry?.motion,
-      moisture: mostRecentSoilEntry?.soil_moisture,
-      temperature: mostRecentTempEntry?.temperature,
-      humidity: mostRecentTempEntry?.humidity,
+      brightness: mostRecentLdrEntry,
+      motion: mostRecentMotionEntry,
+      soil: mostRecentSoilEntry,
+      temperature: mostRecentTempEntry,
     };
   } catch (error) {
     console.error("Failed to fetch recent plant data:", error);
