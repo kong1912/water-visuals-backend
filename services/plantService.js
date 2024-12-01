@@ -3,7 +3,7 @@ const axios = require('axios');
 const dotenv = require("dotenv");
 dotenv.config({path: './config/.env'});
 
-const databaseUrl = process.env.DATABASE_URL;
+const databaseUrl = "https://embedded-sys2-default-rtdb.asia-southeast1.firebasedatabase.app/.json";
 exports.getAllPlantData = async () => {
   try {
     const response = await fetch(databaseUrl);
