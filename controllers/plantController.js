@@ -1,4 +1,5 @@
 const plantService = require('../services/plantService');
+databaseURL = process.env.DATABASE_URL
 
 exports.getAllPlantData = async (req, res) => {
   try {

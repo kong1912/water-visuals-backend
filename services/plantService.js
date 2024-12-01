@@ -1,7 +1,6 @@
 const fetch = require('node-fetch');
 
-const databaseUrl = process.env.DATABASE_URL;
-
+const databaseUrl = "https://embedded-sys-default-rtdb.asia-southeast1.firebasedatabase.app/.json"
 exports.getAllPlantData = async () => {
   try {
     const response = await fetch(databaseUrl);
