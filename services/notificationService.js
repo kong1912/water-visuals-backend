@@ -10,8 +10,6 @@ const evaluateNotifications = (plant) => {
     const notificationTypes = {
       "moistureHigh": plant.moisture > 80,
       "moistureLow": plant.moisture < 20,
-      "temperatureHigh": plant.temperature > 30,
-      "brightnessLow": plant.brightness < 20,
       "motionDetected": plant.motion === "detected",
     };
   
@@ -38,12 +36,8 @@ const evaluateNotifications = (plant) => {
         return `Soil moisture is ${plant.moisture}% (exceeds safe level).`;
       case "moistureLow":
         return `Soil moisture is ${plant.moisture}% (too low).`;
-      case "temperatureHigh":
-        return `Temperature is ${plant.temperature}°C (too hot).`;
-      case "brightnessLow":
-        return `Brightness is ${plant.brightness} (too dark for healthy growth).`;
       case "motionDetected":
-        return "Movement detected near Plant #1";
+        return "Motion detected";
       default:
         return "";
     }
