@@ -9,8 +9,7 @@ const evaluateNotifications = (plant) => {
   // const plantTimestamp = `${new Date(parseInt(plant.time, 10) * 1000).getDate().toString().padStart(2, '0')}/${(new Date(parseInt(plant.time, 10) * 1000).getMonth() + 1).toString().padStart(2, '0')}/${new Date(parseInt(plant.time, 10) * 1000).getFullYear()}`;
 
   const notificationTypes = {
-      "moistureHigh": plant.moisture > 80,
-      "moistureLow": plant.moisture < 20,
+      "moistureLow": plant.moisture > 50,
       "motionDetected": plant.motion === "detected",
   };
 
