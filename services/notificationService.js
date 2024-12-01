@@ -6,7 +6,8 @@ const evaluateNotifications = (plant) => {
 
   // Notification types and their conditions
   const notificationTypes = {
-    moistureLow: plant.soil.value.soil_moisture > 50,
+    moistureLow: plant.soil.value.soil_moisture < 50,
+    moistureNormal: plant.soil.value.soil_moisture >= 50,
     motionDetected: plant.motion.value.motion === "detected",
   };
 
@@ -16,6 +17,9 @@ const evaluateNotifications = (plant) => {
       let timestamp;
       switch (type) {
         case "moistureLow":
+          timestamp = new Date(parseInt(plant.soil.timestamp, 10) * 1000);
+          break;
+        case "moistureNormal":
           timestamp = new Date(parseInt(plant.soil.timestamp, 10) * 1000);
           break;
         case "motionDetected":
