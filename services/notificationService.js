@@ -6,8 +6,8 @@ const evaluateNotifications = (plant) => {
 
   // Notification types and their conditions
   const notificationTypes = {
-    moistureLow: plant.soil.value.soil_moisture > 50,
-    moistureNormal: plant.soil.value.soil_moisture <= 50,
+    moistureLow: plant.soil.value.soil_moisture < 50,
+    moistureNormal: plant.soil.value.soil_moisture >= 50,
     motionDetected: plant.motion.value.motion === "detected",
   };
 
